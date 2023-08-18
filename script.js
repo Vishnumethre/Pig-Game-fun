@@ -5,6 +5,8 @@ const diceEl = document.querySelector(".dice");
 console.log(diceEl);
 score0El.textContent = 0;
 score1El.textContent = 0;
+const p1 = document.getElementById('inputField0');
+const p2 = document.getElementById('inputField1');
 
 
 const btnNew = document.querySelector('.btn--new');
@@ -41,7 +43,7 @@ btnRoll.addEventListener('click', () => {
     }
     else {
        //currentScore   //currentScore=0;
-        scores[`${activePlayer}`] = scores[`${activePlayer}`] +Number(document.getElementById(`current--${activePlayer}`).textContent);
+        //scores[`${activePlayer}`] = scores[`${activePlayer}`] +Number(document.getElementById(`current--${activePlayer}`).textContent);
         document.getElementById(`score--${activePlayer}`).textContent = scores[`${activePlayer}`];
         document.getElementById(`current--${activePlayer}`).textContent = 0;
         console.log(document.querySelector('.player--active').classList[1]);
@@ -71,6 +73,7 @@ btnHold.addEventListener('click', () =>
         //document.querySelector(`player--${activePlayer}`).classList.remove('player--active');
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+        document.getElementById(`name--${activePlayer}`).textContent = document.getElementById(`inputField${activePlayer}`).value+' '+"Winner";
 
         console.log(document.querySelector(`.player--${activePlayer}`));
         btnHold.disabled = true;
@@ -97,7 +100,8 @@ btnNew.addEventListener('click', () =>
     document.getElementById(`score--${1}`).textContent = 0;
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--winner');
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-     player0.classList.toggle('player--active');
+    player0.classList.toggle('player--active');
+    document.getElementById(`name--${activePlayer}`).textContent = document.getElementById(`inputField${activePlayer}`).value;
     // player1.classList.toggle('player--active');
     btnHold.disabled = false;
     btnRoll.disabled = false;
@@ -105,4 +109,18 @@ btnNew.addEventListener('click', () =>
     currentScore = 0;
     scores = [0, 0];
 })
+
+
+
+
+document.querySelector('.submit-btn').addEventListener('click', () => {
+    console.log(p1.value);
+    console.log(p2.value);
+    document.getElementById('name--0').textContent = p1.value;
+    document.getElementById('name--1').textContent = p2.value;
+    document.querySelector('.hidden').classList.remove('hidden');
+    document.querySelector('.show').classList.add('hidden');
+   
+
+});
 
